@@ -4,6 +4,8 @@ GUI application for submitting Game of Life queries
 
 import tkinter
 from tkinter import ttk
+import itertools
+from z3 import *
 
 # Side length in px of cells when drawn to board.
 CELL_SIZE = 30
@@ -119,7 +121,6 @@ class App:
     """
     Top level application
     """
-
     def __init__(self):
         # (tenzin): Copying a good part of the Tkinter setup from CSE 493X lol
         self.window = tkinter.Tk()
@@ -129,6 +130,9 @@ class App:
 
         # Create internal board representation, have it take ownership of canvas.
         self.board = Board(self.board_canvas, SIZE)
+
+        # Store the Solver instance which will actually do the work
+        self.solver = Solver()
 
 
 if __name__ == '__main__':
