@@ -1,0 +1,4 @@
+{
+  "python.analysis.inlayHints.pytestParameters": false,
+  "python.analysis.typeCheckingMode": "basic"
+}
