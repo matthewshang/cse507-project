@@ -188,7 +188,7 @@ class Board:
 
 WIDTH = 800
 HEIGHT = 600
-SIZE = 3
+SIZE = 6
 
 INPUT_DESCRIPTION = """\
 Use this grid to select the desired end state. Left click on cells to mark
@@ -214,6 +214,7 @@ class App:
         # Text for Input Board
         # Input Frame (0, 0), Output Frame (0, 1)
         # Submit button (1, 0)
+        # Query Result (1, 1)
 
         # Input frame and output frame:
         # Title (0,0)
@@ -263,6 +264,10 @@ class App:
             self.window, text="Get a valid predecessor!", command=self.submit_query)
         self.submit_button.grid(row=1, column=0)
 
+        # === Add Result Label ====
+        self.result_label = ttk.Label(self.window, text="Query Outcome: <None yet>", wraplength=200)
+        self.result_label.grid(row=1, column=1)
+
     def constrain(self, solver: z3.Solver, slice: golz3.Slice):
         """
         Add constraints to require that the provided slice matches the current board state.
@@ -293,12 +298,20 @@ class App:
         query_result = solver.check()
         print(f"Query result: {query_result}")
 
-        # Print the model
-        model = solver.model()
-        golz3.print_model(model, state)
+        # Default to clearing everything in output on failed query.
+        result = [[[0 for _ in range(SIZE)] for _ in range(SIZE)]]
 
-        # Also visualize the first time step of model in output grid.
-        result = golz3.model_to_python(model, state)
+        # Print the model
+        if query_result == z3.sat:
+            model = solver.model()
+            golz3.print_model(model, state)
+
+            # Also visualize the first time step of model in output grid.
+            result = golz3.model_to_python(model, state)
+            self.result_label.configure(text="Query outcome: SAT")
+        else:
+            self.result_label.configure(text="Query outcome: UNSAT")
+
         self.output_board.set_board_state(result[0])
         # Redraw board with updated state.
         self.output_board.draw()
