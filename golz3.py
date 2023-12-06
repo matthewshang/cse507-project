@@ -4,6 +4,9 @@ from z3 import *
 # A Slice is a rectangular grid representing Life state at a specific time.
 Slice = list[list[ArithRef]]
 
+# A Concrete Slice (i.e.: a slice where the values are concrete).
+ConcSlice = list[list[int]]
+
 def make_life(solver: Solver, grid_size: int, time_steps: int) -> list[Slice]:
     """
     Create a (time steps) x (grid size) x (grid size) array of symbolic variables
