@@ -20,6 +20,8 @@ INPUT_DESCRIPTION = """\
 Use this grid to select the desired end state. Left click on cells to mark
 them as alive or dead. Once ready, use the submit button below to submit
 the query for a predecessor.
+
+Sparsity slider limits first predecessor to only use at most `n%` of cells.
 """.replace("\n", " ")
 
 OUTPUT_DESCRIPTION = """\
@@ -62,13 +64,15 @@ class App:
 
         tkinter.Label(self.input_frame,
                       text=INPUT_DESCRIPTION,
-                      wraplength=250,
+                      wraplength=400,
                       justify="left").grid(row=2, column=0, padx=10)
 
         option_frame = ttk.Frame(self.input_frame)
         option_frame.grid(row=1, column=1)
         tkinter.Label(option_frame, text="Board\nsize").grid(row=0, column=0)
-        self.size = 20
+
+        # Side length of the board.
+        self.size = 10
         self.size_scale = tkinter.Scale(option_frame,
                                         from_=3,
                                         to=30,
@@ -84,7 +88,7 @@ class App:
         self.time_scale.grid(row=3, column=0)
         self.time_scale.set(2)
 
-        tkinter.Label(option_frame, text="Sparsity").grid(row=4, column=0)
+        tkinter.Label(option_frame, text="Sparsity (%)").grid(row=4, column=0)
         self.sparsity_scale = tkinter.Scale(option_frame,
                                             from_=1,
                                             to=100,
