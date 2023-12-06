@@ -5,6 +5,9 @@ import z3
 Slice = list[list[z3.ArithRef]]
 
 
+# A Concrete Slice (i.e.: a slice where the values are concrete).
+ConcSlice = list[list[int]]
+
 def make_life(solver: z3.Solver, grid_size: int,
               time_steps: int) -> list[Slice]:
     """
