@@ -1,8 +1,8 @@
 import pickle
 
-class Trajectory:
+class Frames:
     """
-    A trajectory is a list of states, where each state is a 2D grid of cells.
+    A Frames object keeps a list of states, where each state is a 2D grid of cells.
     """
     def __init__(self, states: list[list[list[int]]]) -> None:
         self.states = states
@@ -10,7 +10,7 @@ class Trajectory:
         self.grid_size = len(states[0])
 
     @staticmethod
-    def load(path: str) -> "Trajectory":
+    def load(path: str) -> "Frames":
         with open(path, "rb") as f:
             return pickle.load(f)
     

@@ -9,7 +9,7 @@ from tkinter import ttk
 import z3
 import golz3
 from timeit import default_timer as timer
-from trajectory import Trajectory
+from frames import Frames
 
 # Board offset from top and left side of canvas so that lines draw.
 BOARD_OFFSET = 10
@@ -178,7 +178,7 @@ class App:
         if self.result is not None:
             location = tkinter.filedialog.asksaveasfilename()
             if location:
-                Trajectory(self.result).save(location)
+                Frames(self.result).save(location)
 
     def submit_query(self):
         solver = z3.Solver()
