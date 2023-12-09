@@ -1,8 +1,8 @@
-# {ProjectName}
+# GOLZ3
 
 ## Intro
 
-{ProjectName} investigates applying solvers to the classic recreational math game/puzzle/cellular-automata: Conway's Game of Life.
+GOLZ3 investigates applying solvers to the classic recreational math game/puzzle/cellular-automata: Conway's Game of Life. Slides we used for presenting the project are located under `Slides\GOLZ3.pptx`
 
 ## Setup
 
