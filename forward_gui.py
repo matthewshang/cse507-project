@@ -7,8 +7,8 @@ from tkinter import ttk
 from gui_common import Board
 from frames import Frames
 
-WIDTH = 800
-HEIGHT = 800
+WIDTH = 400
+HEIGHT = 400
 SIZE = 6
 
 class App:
