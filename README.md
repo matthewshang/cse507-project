@@ -30,6 +30,7 @@ python foward_gui.py
 ```
 
 Load any saved predecessor search results and see what the solution looks like!
+Some examples are provided in the `patterns` directory.
 
 ### Jupyter Notebooks
 
@@ -39,3 +40,5 @@ Here are some chief ones we wanted to highlight:
 - `more_life.ipynb` contains a bulk of examples. Just load it up using your Python environment as the kernel and step through the cells to see examples of how glider search, Garden of Eden searching, and more(!) can be implemented through Z3Py's API.
 - `synth.ipynb` contains a very basic sketch of how a query can be constructed such that the solver synthesizes a Cellular Automaton rule that explains a given concrete pre and post state.
 - `pseudobool.ipynb` contains a repeat of many examples from `more_life`, except that the constraint generation function has been modified to generate constraints in terms of Z3's provided Pseudo-boolean equations for counting `Bool`'s. These turned out to be pretty slow unfortunately.
+- `periodic.ipynb` contains a proof of concept for how to use Z3 to find periodic solutions to a given Game of Life board. We used this code to rediscover the 1x3 spinner, glider, and spaceship patterns.
+- `benchmark.ipynb` contains code for benchmarking the performance of integer constraints, handcrafted boolean constraints, and pseudo-boolean constraints as grid size and time steps are increased in an inverse search setup.
